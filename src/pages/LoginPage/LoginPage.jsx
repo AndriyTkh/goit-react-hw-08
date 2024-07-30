@@ -1,43 +1,44 @@
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operations";
-import css from "./RegistrationPage.module.css";
 import { Formik, Form, Field } from "formik";
 import { useId } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
+import css from "./LoginPage.module.css";
 
 const initialValues = {
-  username: "",
   email: "",
   password: "",
 };
 
-export default function RegistrationPage() {
+export default function LoginPage() {
   const dispatch = useDispatch();
-  const usernameFieldId = useId();
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
   const handleSubmit = (values, actions) => {
+    alert("remember shit")
     dispatch(
-      register({
-        name: values.username,
+      logIn({
         email: values.email,
         password: values.password,
       })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        console.log("login success");
+      })
+      .catch(() => {
+        console.log("login error");
+      });
 
     actions.resetForm();
   };
 
   return (
     <div>
-      <h1>Registration page!</h1>
+      <h1>Login page!</h1>
 
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className={css.form}>
-          <label htmlFor={usernameFieldId} className={css.label}>
-            Username
-          </label>
-          <Field type="text" name="username" id={usernameFieldId}></Field>
           <label htmlFor={emailFieldId} className={css.label}>
             Email
           </label>
@@ -48,7 +49,7 @@ export default function RegistrationPage() {
           <Field type="password" name="password" id={passwordFieldId}></Field>
 
           <button type="submit" className={css.submitBtn}>
-            Register
+            Log In
           </button>
         </Form>
       </Formik>

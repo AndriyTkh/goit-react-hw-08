@@ -14,7 +14,7 @@ const HomePage = lazy(() => import("../../pages/HomePage"));
 const RegistrationPage = lazy(() =>
   import("../../pages/RegistrationPage/RegistrationPage")
 );
-const LoginPage = lazy(() => import("../../pages/LoginPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const ContactsPage = lazy(() => import("../../pages/ContactsPage"));
 
 export default function App() {
