@@ -1,14 +1,14 @@
 import css from "./SearchBox.module.css";
 import { selectNameFilter } from "../../redux/filters/selectors";
 import { useDispatch, useSelector } from "react-redux";
-/* import changeFilter from "../../redux/filters/" */
+import { changeFilter } from "../../redux/filters/slice";
 
 export default function SearchBox() {
-  /*   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (evt) => {
     dispatch(changeFilter(evt.target.value));
-  }; */
+  };
 
   const filterValue = useSelector(selectNameFilter);
 
@@ -19,7 +19,7 @@ export default function SearchBox() {
         className={css.searchInput}
         type="text"
         value={filterValue}
-        /* onChange={handleChange} */
+        onChange={handleChange}
       />
     </div>
   );

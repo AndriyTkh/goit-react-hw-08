@@ -34,7 +34,7 @@ export const store = configureStore({
       },
     });
   },
-  /*   devTools: process.env.NODE_ENVV === "development", */
+  /* devTools: process.env.NODE_ENVV === "development", */
 });
 
 export const persistor = persistStore(store);
