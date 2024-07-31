@@ -1,14 +1,11 @@
-/* import ContactForm from "../ContactForm/ContactForm";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactList from "../ContactList/ContactList"; */
-import { useDispatch, useSelector } from "react-redux";
-/* import { selectError, selectLoading } from "../../redux/selectors"; */
 import { useEffect, lazy } from "react";
-import { fetchContacts } from "../../redux/contacts/operations";
 import { Routes, Route } from "react-router-dom";
 import { RestrictedRoute } from "../RestrictedRoute";
 import { PrivateRoute } from "../PrivateRoute";
 import { Layout } from "../Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "../../redux/auth/operations";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -19,24 +16,15 @@ const ContactsPage = lazy(() => import("../../pages/ContactsPage"));
 
 export default function App() {
   const dispatch = useDispatch();
-  /* const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError); */
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  /* return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList />
-      {isLoading && !isError && <div>Waiting for server to respond...</div>}
-    </div>
-  ); */
-
-  return (
+  return isRefreshing ? (
+    <h3>Refreshing user...</h3>
+  ) : (
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />

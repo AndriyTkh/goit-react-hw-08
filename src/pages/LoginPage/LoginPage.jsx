@@ -15,7 +15,6 @@ export default function LoginPage() {
   const passwordFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    alert("remember shit")
     dispatch(
       logIn({
         email: values.email,
