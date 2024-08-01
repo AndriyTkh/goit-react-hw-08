@@ -5,8 +5,12 @@
   flex-direction: column;
 }
 
-.label {
+.fieldBox {
   margin-top: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .submitBtn {
@@ -25,4 +29,9 @@
 .submitBtn:hover,
 .submitBtn:focus {
   background-color: lightgrey;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
 }

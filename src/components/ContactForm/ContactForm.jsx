@@ -13,7 +13,11 @@ const validation = Yup.object().shape({
   number: Yup.string()
     .min(3, "Too short!")
     .max(30, "Too long!")
-    .required("Required"),
+    .required("Required")
+    .test("phone-validation, Phone number is invalid!", (value) => {
+      var reg = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+      return reg.test(value);
+    }),
 });
 
 const init = {
