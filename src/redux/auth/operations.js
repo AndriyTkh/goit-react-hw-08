@@ -26,6 +26,9 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      if (error.response.data.code === 11000) {
+        alert("Duplicate key error. This email is already used!");
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
